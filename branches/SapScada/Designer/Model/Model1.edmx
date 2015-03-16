@@ -1,0 +1,615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SapScadaDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="AlarmTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="IOTagId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="int" />
+          <Property Name="AlarmOnWhen" Type="int" />
+          <Property Name="TimeStamp" Type="datetime" />
+          <Property Name="UpdateRating" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AlarmTagValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="TimeStampOn" Type="datetime" Nullable="false" />
+          <Property Name="TimeStampOff" Type="datetime" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="AlarmTagId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Port" Type="int" />
+          <Property Name="Driver" Type="nvarchar" MaxLength="200" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Note" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="IOTag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Type" Type="int" />
+          <Property Name="DataType" Type="int" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="DeviceID" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="200" />
+          <Property Name="Value" Type="nvarchar" MaxLength="4000" />
+          <Property Name="TimeStamp" Type="datetime" />
+          <Property Name="Quality" Type="int" />
+          <Property Name="UpdateRating" Type="int" />
+          <Property Name="IsStoreToLog" Type="bit" />
+        </EntityType>
+        <EntityType Name="IOTagValue">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IOTagID" Type="int" />
+          <Property Name="Value" Type="nvarchar" MaxLength="4000" />
+          <Property Name="TimeStamp" Type="datetime" />
+          <Property Name="Quality" Type="int" />
+        </EntityType>
+        <EntityType Name="Server">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="IP" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="int" />
+          <Property Name="Priority" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="SystemEvent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceID" Type="int" />
+          <Property Name="EventID" Type="int" />
+          <Property Name="EventSubID" Type="int" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="Parameter" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="400" />
+          <Property Name="Detail" Type="nvarchar" MaxLength="400" />
+          <Property Name="Priority" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsConfirm" Type="bit" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserRight">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Privilege" Type="int" />
+        </EntityType>
+        <Association Name="FK_AlarmTag_IOTag">
+          <End Role="IOTag" Type="Self.IOTag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AlarmTag" Type="Self.AlarmTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IOTag">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AlarmTag">
+              <PropertyRef Name="IOTagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlarmTagValue_AlarmTag">
+          <End Role="AlarmTag" Type="Self.AlarmTag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AlarmTagValue" Type="Self.AlarmTagValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlarmTag">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlarmTagValue">
+              <PropertyRef Name="AlarmTagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IOTag_Device">
+          <End Role="Device" Type="Self.Device" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IOTag" Type="Self.IOTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Device">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IOTag">
+              <PropertyRef Name="DeviceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IOTagValue_IOTag">
+          <End Role="IOTag" Type="Self.IOTag" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IOTagValue" Type="Self.IOTagValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IOTag">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IOTagValue">
+              <PropertyRef Name="IOTagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SystemEvent_Device">
+          <End Role="Device" Type="Self.Device" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SystemEvent" Type="Self.SystemEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Device">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SystemEvent">
+              <PropertyRef Name="DeviceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRight_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserRight" Type="Self.UserRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRight">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SapScadaDatabaseModelStoreContainer">
+          <EntitySet Name="AlarmTag" EntityType="Self.AlarmTag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AlarmTagValue" EntityType="Self.AlarmTagValue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Device" EntityType="Self.Device" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IOTag" EntityType="Self.IOTag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IOTagValue" EntityType="Self.IOTagValue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Server" EntityType="Self.Server" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SystemEvent" EntityType="Self.SystemEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRight" EntityType="Self.UserRight" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AlarmTag_IOTag" Association="Self.FK_AlarmTag_IOTag">
+            <End Role="IOTag" EntitySet="IOTag" />
+            <End Role="AlarmTag" EntitySet="AlarmTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlarmTagValue_AlarmTag" Association="Self.FK_AlarmTagValue_AlarmTag">
+            <End Role="AlarmTag" EntitySet="AlarmTag" />
+            <End Role="AlarmTagValue" EntitySet="AlarmTagValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IOTag_Device" Association="Self.FK_IOTag_Device">
+            <End Role="Device" EntitySet="Device" />
+            <End Role="IOTag" EntitySet="IOTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IOTagValue_IOTag" Association="Self.FK_IOTagValue_IOTag">
+            <End Role="IOTag" EntitySet="IOTag" />
+            <End Role="IOTagValue" EntitySet="IOTagValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SystemEvent_Device" Association="Self.FK_SystemEvent_Device">
+            <End Role="Device" EntitySet="Device" />
+            <End Role="SystemEvent" EntitySet="SystemEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRight_User" Association="Self.FK_UserRight_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRight" EntitySet="UserRight" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SapScadaDatabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Port" Type="Int32" />
+          <Property Name="Driver" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IOTags" Relationship="Self.FK_IOTag_Device" FromRole="Device" ToRole="IOTag" />
+          <NavigationProperty Name="SystemEvents" Relationship="Self.FK_SystemEvent_Device" FromRole="Device" ToRole="SystemEvent" />
+        </EntityType>
+        <EntityType Name="IOTag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="DataType" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceID" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="TimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="Quality" Type="Int32" />
+          <Property Name="UpdateRating" Type="Int32" />
+          <Property Name="IsStoreToLog" Type="Boolean" />
+          <NavigationProperty Name="Device" Relationship="Self.FK_IOTag_Device" FromRole="IOTag" ToRole="Device" />
+          <NavigationProperty Name="IOTagValues" Relationship="Self.FK_IOTagValue_IOTag" FromRole="IOTag" ToRole="IOTagValue" />
+          <NavigationProperty Name="AlarmTags" Relationship="SapScadaDatabaseModel.FK_AlarmTag_IOTag" FromRole="IOTag" ToRole="AlarmTag" />
+        </EntityType>
+        <EntityType Name="IOTagValue">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IOTagID" Type="Int32" />
+          <Property Name="Value" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="TimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="Quality" Type="Int32" />
+          <NavigationProperty Name="IOTag" Relationship="Self.FK_IOTagValue_IOTag" FromRole="IOTagValue" ToRole="IOTag" />
+        </EntityType>
+        <EntityType Name="Server">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="Priority" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SystemEvent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceID" Type="Int32" />
+          <Property Name="EventID" Type="Int32" />
+          <Property Name="EventSubID" Type="Int32" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="Parameter" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Detail" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsConfirm" Type="Boolean" />
+          <NavigationProperty Name="Device" Relationship="Self.FK_SystemEvent_Device" FromRole="SystemEvent" ToRole="Device" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserRights" Relationship="Self.FK_UserRight_User" FromRole="User" ToRole="UserRight" />
+        </EntityType>
+        <EntityType Name="UserRight">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Privilege" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserRight_User" FromRole="UserRight" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_IOTag_Device">
+          <End Role="Device" Type="Self.Device" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IOTag" Type="Self.IOTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Device">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IOTag">
+              <PropertyRef Name="DeviceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SystemEvent_Device">
+          <End Role="Device" Type="Self.Device" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SystemEvent" Type="Self.SystemEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Device">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SystemEvent">
+              <PropertyRef Name="DeviceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IOTagValue_IOTag">
+          <End Role="IOTag" Type="Self.IOTag" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IOTagValue" Type="Self.IOTagValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IOTag">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IOTagValue">
+              <PropertyRef Name="IOTagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRight_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserRight" Type="Self.UserRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRight">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SapScadaDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Devices" EntityType="Self.Device" />
+          <EntitySet Name="IOTags" EntityType="Self.IOTag" />
+          <EntitySet Name="IOTagValues" EntityType="Self.IOTagValue" />
+          <EntitySet Name="Servers" EntityType="Self.Server" />
+          <EntitySet Name="SystemEvents" EntityType="Self.SystemEvent" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserRights" EntityType="Self.UserRight" />
+          <AssociationSet Name="FK_IOTag_Device" Association="Self.FK_IOTag_Device">
+            <End Role="Device" EntitySet="Devices" />
+            <End Role="IOTag" EntitySet="IOTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SystemEvent_Device" Association="Self.FK_SystemEvent_Device">
+            <End Role="Device" EntitySet="Devices" />
+            <End Role="SystemEvent" EntitySet="SystemEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IOTagValue_IOTag" Association="Self.FK_IOTagValue_IOTag">
+            <End Role="IOTag" EntitySet="IOTags" />
+            <End Role="IOTagValue" EntitySet="IOTagValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRight_User" Association="Self.FK_UserRight_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserRight" EntitySet="UserRights" />
+          </AssociationSet>
+          <EntitySet Name="AlarmTags" EntityType="SapScadaDatabaseModel.AlarmTag" />
+          <AssociationSet Name="FK_AlarmTag_IOTag" Association="SapScadaDatabaseModel.FK_AlarmTag_IOTag">
+            <End Role="IOTag" EntitySet="IOTags" />
+            <End Role="AlarmTag" EntitySet="AlarmTags" />
+          </AssociationSet>
+          <EntitySet Name="AlarmTagValues" EntityType="SapScadaDatabaseModel.AlarmTagValue" />
+          <AssociationSet Name="FK_AlarmTagValue_AlarmTag" Association="SapScadaDatabaseModel.FK_AlarmTagValue_AlarmTag">
+            <End Role="AlarmTag" EntitySet="AlarmTags" />
+            <End Role="AlarmTagValue" EntitySet="AlarmTagValues" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AlarmTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="IOTagId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Int32" />
+          <Property Name="AlarmOnWhen" Type="Int32" />
+          <Property Name="TimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="UpdateRating" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="IOTag" Relationship="SapScadaDatabaseModel.FK_AlarmTag_IOTag" FromRole="AlarmTag" ToRole="IOTag" />
+          <NavigationProperty Name="AlarmTagValues" Relationship="SapScadaDatabaseModel.FK_AlarmTagValue_AlarmTag" FromRole="AlarmTag" ToRole="AlarmTagValue" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AlarmTag_IOTag">
+          <End Type="SapScadaDatabaseModel.IOTag" Role="IOTag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SapScadaDatabaseModel.AlarmTag" Role="AlarmTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IOTag">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AlarmTag">
+              <PropertyRef Name="IOTagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AlarmTagValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="TimeStampOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TimeStampOff" Type="DateTime" Precision="3" Nullable="true" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="AlarmTagId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AlarmTag" Relationship="SapScadaDatabaseModel.FK_AlarmTagValue_AlarmTag" FromRole="AlarmTagValue" ToRole="AlarmTag" />
+        </EntityType>
+        <Association Name="FK_AlarmTagValue_AlarmTag">
+          <End Type="SapScadaDatabaseModel.AlarmTag" Role="AlarmTag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SapScadaDatabaseModel.AlarmTagValue" Role="AlarmTagValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlarmTag">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlarmTagValue">
+              <PropertyRef Name="AlarmTagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SapScadaDatabaseModelStoreContainer" CdmEntityContainer="SapScadaDatabaseEntities">
+          <EntitySetMapping Name="Devices">
+            <EntityTypeMapping TypeName="SapScadaDatabaseModel.Device">
+              <MappingFragment StoreEntitySet="Device">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IOTags">
+            <EntityTypeMapping TypeName="SapScadaDatabaseModel.IOTag">
+              <MappingFragment StoreEntitySet="IOTag">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+                <ScalarProperty Name="UpdateRating" ColumnName="UpdateRating" />
+                <ScalarProperty Name="IsStoreToLog" ColumnName="IsStoreToLog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IOTagValues">
+            <EntityTypeMapping TypeName="SapScadaDatabaseModel.IOTagValue">
+              <MappingFragment StoreEntitySet="IOTagValue">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IOTagID" ColumnName="IOTagID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servers">
+            <EntityTypeMapping TypeName="SapScadaDatabaseModel.Server">
+              <MappingFragment StoreEntitySet="Server">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemEvents">
+            <EntityTypeMapping TypeName="SapScadaDatabaseModel.SystemEvent">
+              <MappingFragment StoreEntitySet="SystemEvent">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EventSubID" ColumnName="EventSubID" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Parameter" ColumnName="Parameter" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="IsConfirm" ColumnName="IsConfirm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SapScadaDatabaseModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRights">
+            <EntityTypeMapping TypeName="SapScadaDatabaseModel.UserRight">
+              <MappingFragment StoreEntitySet="UserRight">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Privilege" ColumnName="Privilege" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlarmTags">
+            <EntityTypeMapping TypeName="SapScadaDatabaseModel.AlarmTag">
+              <MappingFragment StoreEntitySet="AlarmTag">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UpdateRating" ColumnName="UpdateRating" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="AlarmOnWhen" ColumnName="AlarmOnWhen" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="IOTagId" ColumnName="IOTagId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlarmTagValues">
+            <EntityTypeMapping TypeName="SapScadaDatabaseModel.AlarmTagValue">
+              <MappingFragment StoreEntitySet="AlarmTagValue">
+                <ScalarProperty Name="AlarmTagId" ColumnName="AlarmTagId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TimeStampOff" ColumnName="TimeStampOff" />
+                <ScalarProperty Name="TimeStampOn" ColumnName="TimeStampOn" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

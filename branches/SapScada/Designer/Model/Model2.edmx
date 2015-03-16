@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DesignerDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="Junction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JunctionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lat" Type="float" />
+          <Property Name="Lng" Type="float" />
+          <Property Name="Tag" Type="nvarchar" MaxLength="50" />
+          <Property Name="Expression" Type="nvarchar" MaxLength="200" />
+          <Property Name="Map" Type="nvarchar" MaxLength="300" />
+          <Property Name="Note" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Lamp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LampID" Type="int" />
+          <Property Name="X" Type="int" />
+          <Property Name="Y" Type="int" />
+          <Property Name="Direction" Type="int" />
+          <Property Name="Tag" Type="nvarchar" MaxLength="50" />
+          <Property Name="Expression" Type="nvarchar" MaxLength="200" />
+          <Property Name="Type" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="200" />
+          <Property Name="JunctionID" Type="int" />
+        </EntityType>
+        <Association Name="FK_Lamp_Junction">
+          <End Role="Junction" Type="Self.Junction" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Lamp" Type="Self.Lamp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Junction">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Lamp">
+              <PropertyRef Name="JunctionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DesignerDatabaseModelStoreContainer">
+          <EntitySet Name="Junction" EntityType="Self.Junction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lamp" EntityType="Self.Lamp" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Lamp_Junction" Association="Self.FK_Lamp_Junction">
+            <End Role="Junction" EntitySet="Junction" />
+            <End Role="Lamp" EntitySet="Lamp" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DesignerDatabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="DesignerDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Junctions" EntityType="DesignerDatabaseModel.Junction" />
+          <EntitySet Name="Lamps" EntityType="DesignerDatabaseModel.Lamp" />
+          <AssociationSet Name="FK_Lamp_Junction" Association="DesignerDatabaseModel.FK_Lamp_Junction">
+            <End Role="Junction" EntitySet="Junctions" />
+            <End Role="Lamp" EntitySet="Lamps" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Junction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JunctionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lat" Type="Double" />
+          <Property Name="Lng" Type="Double" />
+          <Property Name="Tag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Expression" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Map" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lamps" Relationship="DesignerDatabaseModel.FK_Lamp_Junction" FromRole="Junction" ToRole="Lamp" />
+        </EntityType>
+        <EntityType Name="Lamp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LampID" Type="Int32" />
+          <Property Name="X" Type="Int32" />
+          <Property Name="Y" Type="Int32" />
+          <Property Name="Direction" Type="Int32" />
+          <Property Name="Tag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Expression" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="JunctionID" Type="Int32" />
+          <NavigationProperty Name="Junction" Relationship="DesignerDatabaseModel.FK_Lamp_Junction" FromRole="Lamp" ToRole="Junction" />
+        </EntityType>
+        <Association Name="FK_Lamp_Junction">
+          <End Type="DesignerDatabaseModel.Junction" Role="Junction" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DesignerDatabaseModel.Lamp" Role="Lamp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Junction">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Lamp">
+              <PropertyRef Name="JunctionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DesignerDatabaseModelStoreContainer" CdmEntityContainer="DesignerDatabaseEntities">
+          <EntitySetMapping Name="Junctions">
+            <EntityTypeMapping TypeName="DesignerDatabaseModel.Junction">
+              <MappingFragment StoreEntitySet="Junction">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="Expression" ColumnName="Expression" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="JunctionName" ColumnName="JunctionName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lamps">
+            <EntityTypeMapping TypeName="DesignerDatabaseModel.Lamp">
+              <MappingFragment StoreEntitySet="Lamp">
+                <ScalarProperty Name="JunctionID" ColumnName="JunctionID" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Expression" ColumnName="Expression" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="LampID" ColumnName="LampID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

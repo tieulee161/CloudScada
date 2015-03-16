@@ -1,0 +1,854 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{341996A0-9DE4-4D05-B3EF-50CE324FDD9B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Designer</RootNamespace>
+    <AssemblyName>Designer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DriverCommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\trunk\DataAcquisition\DataAcquisition\bin\Debug\DriverCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.Core, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\HDSComponent\DLL\V1.6\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\HDSComponent\DLL\V1.6\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="IODriver, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\trunk\DataAcquisition\DataAcquisition\bin\Debug\IODriver.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.Smo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.SqlEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="OPCLib">
+      <HintPath>..\..\..\trunk\DataAcquisition\DataAcquisition\bin\Debug\OPCLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2014.2.715.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Telerik\UI for WinForms Q2 2014\Bin40\Telerik.WinControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.ChartView, Version=2014.2.715.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Telerik\UI for WinForms Q2 2014\Bin40\Telerik.WinControls.ChartView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.GridView, Version=2014.2.715.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Telerik\UI for WinForms Q2 2014\Bin40\Telerik.WinControls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RadChart, Version=2014.2.715.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.RadDock, Version=2014.2.715.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Telerik\UI for WinForms Q2 2014\Bin40\Telerik.WinControls.RadDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetro, Version=2014.2.715.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroBlue, Version=2014.2.715.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Telerik\UI for WinForms Q2 2014\Bin40\Telerik.WinControls.Themes.TelerikMetroBlue.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2014.2.715.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Telerik\UI for WinForms Q2 2014\Bin40\Telerik.WinControls.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2014.2.715.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Telerik\UI for WinForms Q2 2014\Bin40\TelerikCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikData, Version=2014.2.715.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Telerik\UI for WinForms Q2 2014\Bin40\TelerikData.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Alarm.cs" />
+    <Compile Include="Core\Display.cs" />
+    <Compile Include="Core\Driver.cs" />
+    <Compile Include="Core\IOTag.cs" />
+    <Compile Include="Core\Root.cs" />
+    <Compile Include="Core\Task.cs" />
+    <Compile Include="Model\DBAccess.cs" />
+    <Compile Include="Model\DesignerAccess.cs" />
+    <Compile Include="Model\DesignerService.cs" />
+    <Compile Include="Model\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model2.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ReportDB.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmAlarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmAlarm.Designer.cs">
+      <DependentUpon>FrmAlarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmTrend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmTrend.Designer.cs">
+      <DependentUpon>FrmTrend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmVDKDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmVDKDetail.Designer.cs">
+      <DependentUpon>FrmVDKDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmVDKJunction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmVDKJunction.Designer.cs">
+      <DependentUpon>FrmVDKJunction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmVDKScenario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmVDKScenario.Designer.cs">
+      <DependentUpon>FrmVDKScenario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmVDKPeripheral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmVDKPeripheral.Designer.cs">
+      <DependentUpon>FrmVDKPeripheral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmVDKTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmVDKTime.Designer.cs">
+      <DependentUpon>FrmVDKTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmPLCTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmPLCTime.Designer.cs">
+      <DependentUpon>FrmPLCTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmPLCAlarmSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmPLCAlarmSetting.Designer.cs">
+      <DependentUpon>FrmPLCAlarmSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmPLCParametterSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmPLCParametterSetting.Designer.cs">
+      <DependentUpon>FrmPLCParametterSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmPLCSpecialDaySetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmPLCSpecialDaySetting.Designer.cs">
+      <DependentUpon>FrmPLCSpecialDaySetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmAlarm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmAlarm1.Designer.cs">
+      <DependentUpon>FrmAlarm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmArrowLamp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FrmArrowLamp.Designer.cs">
+      <DependentUpon>FrmArrowLamp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmChangePassword.designer.cs">
+      <DependentUpon>FrmChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmGraphicDesign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmGraphicDesign.Designer.cs">
+      <DependentUpon>FrmGraphicDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmIOTagSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmIOTagSetting.Designer.cs">
+      <DependentUpon>FrmIOTagSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmIOTag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmIOTag.Designer.cs">
+      <DependentUpon>FrmIOTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmDeviceSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmDeviceSetting.Designer.cs">
+      <DependentUpon>FrmDeviceSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmDevice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmDevice.Designer.cs">
+      <DependentUpon>FrmDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmJunction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmJunction.Designer.cs">
+      <DependentUpon>FrmJunction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmLogin.designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmMonitor.Designer.cs">
+      <DependentUpon>FrmMonitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmPLCControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmPLCControl.Designer.cs">
+      <DependentUpon>FrmPLCControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmPLCJunction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmPLCJunction.Designer.cs">
+      <DependentUpon>FrmPLCJunction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmPLCNormalDaySetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmPLCNormalDaySetting.Designer.cs">
+      <DependentUpon>FrmPLCNormalDaySetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmReport.Designer.cs">
+      <DependentUpon>FrmReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmRuntime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmRuntime.Designer.cs">
+      <DependentUpon>FrmRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmServer.Designer.cs">
+      <DependentUpon>FrmServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmTest.Designer.cs">
+      <DependentUpon>FrmTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmServerSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmServerSetting.Designer.cs">
+      <DependentUpon>FrmServerSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmTrend1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmTrend1.Designer.cs">
+      <DependentUpon>FrmTrend1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmUpdateTOD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmUpdateTOD.Designer.cs">
+      <DependentUpon>FrmUpdateTOD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmUserManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmUserManagement.designer.cs">
+      <DependentUpon>FrmUserManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmVDKLight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmVDKLight.Designer.cs">
+      <DependentUpon>FrmVDKLight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmVDKPowerCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmVDKPowerCard.Designer.cs">
+      <DependentUpon>FrmVDKPowerCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmVDKInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmVDKInfo.Designer.cs">
+      <DependentUpon>FrmVDKInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmVDKJunction1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmVDKJunction1.Designer.cs">
+      <DependentUpon>FrmVDKJunction1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmDisplayTagSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmDisplayTagSetting.Designer.cs">
+      <DependentUpon>FrmDisplayTagSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmThreeColorLamp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FrmThreeColorLamp.Designer.cs">
+      <DependentUpon>FrmThreeColorLamp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmPedestrianLight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FrmPedestrianLight.designer.cs">
+      <DependentUpon>FrmPedestrianLight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmWelcome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmWelcome.designer.cs">
+      <DependentUpon>FrmWelcome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SpreadsheetGridRowHeaderCellElement.cs" />
+    <Compile Include="View\UCAlarm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UCAlarm.Designer.cs">
+      <DependentUpon>UCAlarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UCAlarmNews.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UCAlarmNews.Designer.cs">
+      <DependentUpon>UCAlarmNews.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmAlarm.resx">
+      <DependentUpon>FrmAlarm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmTrend.resx">
+      <DependentUpon>FrmTrend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmVDKDetail.resx">
+      <DependentUpon>FrmVDKDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmVDKJunction.resx">
+      <DependentUpon>FrmVDKJunction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmVDKScenario.resx">
+      <DependentUpon>FrmVDKScenario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmVDKPeripheral.resx">
+      <DependentUpon>FrmVDKPeripheral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmVDKTime.resx">
+      <DependentUpon>FrmVDKTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmPLCTime.resx">
+      <DependentUpon>FrmPLCTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmPLCAlarmSetting.resx">
+      <DependentUpon>FrmPLCAlarmSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmPLCParametterSetting.resx">
+      <DependentUpon>FrmPLCParametterSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmPLCSpecialDaySetting.resx">
+      <DependentUpon>FrmPLCSpecialDaySetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmAlarm1.resx">
+      <DependentUpon>FrmAlarm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmArrowLamp.resx">
+      <DependentUpon>FrmArrowLamp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmChangePassword.resx">
+      <DependentUpon>FrmChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmGraphicDesign.resx">
+      <DependentUpon>FrmGraphicDesign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmIOTagSetting.resx">
+      <DependentUpon>FrmIOTagSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmIOTag.resx">
+      <DependentUpon>FrmIOTag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmDeviceSetting.resx">
+      <DependentUpon>FrmDeviceSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmDevice.resx">
+      <DependentUpon>FrmDevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmJunction.resx">
+      <DependentUpon>FrmJunction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmMonitor.resx">
+      <DependentUpon>FrmMonitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmPLCControl.resx">
+      <DependentUpon>FrmPLCControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmPLCJunction.resx">
+      <DependentUpon>FrmPLCJunction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmPLCNormalDaySetting.resx">
+      <DependentUpon>FrmPLCNormalDaySetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmReport.resx">
+      <DependentUpon>FrmReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmRuntime.resx">
+      <DependentUpon>FrmRuntime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmServer.resx">
+      <DependentUpon>FrmServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmTest.resx">
+      <DependentUpon>FrmTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmServerSetting.resx">
+      <DependentUpon>FrmServerSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmTrend1.resx">
+      <DependentUpon>FrmTrend1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmUpdateTOD.resx">
+      <DependentUpon>FrmUpdateTOD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmUserManagement.resx">
+      <DependentUpon>FrmUserManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmVDKLight.resx">
+      <DependentUpon>FrmVDKLight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmVDKPowerCard.resx">
+      <DependentUpon>FrmVDKPowerCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmVDKInfo.resx">
+      <DependentUpon>FrmVDKInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmVDKJunction1.resx">
+      <DependentUpon>FrmVDKJunction1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmDisplayTagSetting.resx">
+      <DependentUpon>FrmDisplayTagSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmThreeColorLamp.resx">
+      <DependentUpon>FrmThreeColorLamp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmPedestrianLight.resx">
+      <DependentUpon>FrmPedestrianLight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmWelcome.resx">
+      <DependentUpon>FrmWelcome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UCAlarm.resx">
+      <DependentUpon>UCAlarm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UCAlarmNews.resx">
+      <DependentUpon>UCAlarmNews.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Model\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="Model\Model2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\Model2.edmx.diagram">
+      <DependentUpon>Model2.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Designer.Model.DesignerDatabaseEntities.datasource" />
+    <None Include="Properties\DataSources\Designer.Model.SapScadaDatabaseEntities.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\File.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Device.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Device1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Device2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Device3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Device4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Server.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Alarm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Trend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pedestrian_Red.png" />
+    <None Include="Resources\Pedestrian_Green.png" />
+    <None Include="Resources\Lamp_Arrow_Yellow_Right.png" />
+    <None Include="Resources\Lamp_Arrow_Yellow_Left.png" />
+    <None Include="Resources\Lamp_Arrow_Yellow_Back.png" />
+    <None Include="Resources\Lamp_Arrow_Red_Back.png" />
+    <None Include="Resources\Lamp_Arrow_Green_Back.png" />
+    <None Include="Resources\ArrowAll.png" />
+    <None Include="Resources\Pedestrian.png" />
+    <None Include="Resources\Car.png" />
+    <None Include="Resources\Map.png" />
+    <None Include="Resources\List.png" />
+    <None Include="Resources\Refresh_small.png" />
+    <None Include="Resources\Yellow.png" />
+    <None Include="Resources\setting.png" />
+    <None Include="Resources\Tg.png" />
+    <None Include="Resources\Safety_Yellow_Flashing.png" />
+    <None Include="Resources\Safety_Off.png" />
+    <None Include="Resources\Remote_Yellow_Flashing.png" />
+    <None Include="Resources\Remote_Plan.png" />
+    <None Include="Resources\Remote_Off.png" />
+    <None Include="Resources\Remote_Coordination.png" />
+    <None Include="Resources\Open.png" />
+    <None Include="Resources\On.png" />
+    <None Include="Resources\Off.png" />
+    <None Include="Resources\Manual_Yellow_Flashing.png" />
+    <None Include="Resources\Manual_Plan.png" />
+    <None Include="Resources\Manual_All_Red.png" />
+    <None Include="Resources\Lamp_Yellow_Green_Error.png" />
+    <None Include="Resources\Lamp_Yellow_Green.png" />
+    <None Include="Resources\Lamp_Yellow_Error.png" />
+    <None Include="Resources\Lamp_Yellow.png" />
+    <None Include="Resources\Lamp_Red_Yellow_Green_Error.png" />
+    <None Include="Resources\Lamp_Red_Yellow_Green.png" />
+    <None Include="Resources\Lamp_Red_Yellow_Error.png" />
+    <None Include="Resources\Lamp_Red_Yellow.png" />
+    <None Include="Resources\Lamp_Red_Green_Error.png" />
+    <None Include="Resources\Lamp_Red_Green.png" />
+    <None Include="Resources\Lamp_Red_Error.png" />
+    <None Include="Resources\Lamp_Red.png" />
+    <None Include="Resources\Lamp_Pes_Red_Green_Error.png" />
+    <None Include="Resources\Lamp_Pes_Red_Error.png" />
+    <None Include="Resources\Lamp_Pes_Red.png" />
+    <None Include="Resources\Lamp_Pes_Off.png" />
+    <None Include="Resources\Lamp_Pes_Green_Error.png" />
+    <None Include="Resources\Lamp_Pes_Green.png" />
+    <None Include="Resources\Lamp_Off.png" />
+    <None Include="Resources\Lamp_Green_Error.png" />
+    <None Include="Resources\Lamp_Green.png" />
+    <None Include="Resources\Lamp_Arrow_Yellow_Straight.png" />
+    <None Include="Resources\Lamp_Arrow_Red_Straight.png" />
+    <None Include="Resources\Lamp_Arrow_Red_Right.png" />
+    <None Include="Resources\Lamp_Arrow_Red_Left.png" />
+    <None Include="Resources\Lamp_Arrow_Off.png" />
+    <None Include="Resources\Lamp_Arrow_Green_Straight.png" />
+    <None Include="Resources\Lamp_Arrow_Green_Right.png" />
+    <None Include="Resources\Lamp_Arrow_Green_Left.png" />
+    <None Include="Resources\Error.png" />
+    <None Include="Resources\Connect.png" />
+    <None Include="Resources\Calib.png" />
+    <None Include="Resources\Auto_Yellow_Flashing.png" />
+    <None Include="Resources\Auto_Plan.png" />
+    <None Include="Resources\Auto_Off.png" />
+    <None Include="Resources\Red.png" />
+    <None Include="Resources\Gray.png" />
+    <None Include="Resources\Green.png" />
+    <None Include="Resources\Download_Big.png" />
+    <None Include="Resources\Giamsat.png" />
+    <None Include="Resources\Params.png" />
+    <None Include="Resources\SpecialDate.png" />
+    <None Include="Resources\NormalDate.png" />
+    <None Include="Resources\Control.png" />
+    <None Include="Resources\welcome.png" />
+    <None Include="Resources\User.png" />
+    <None Include="Resources\Clock.png" />
+    <None Include="Resources\Stop_Black.png" />
+    <None Include="Resources\Start_Black.png" />
+    <None Include="Resources\Lamp_Arrow_Error.png" />
+    <None Include="Resources\Lamp_Green_Left.png" />
+    <None Include="Resources\Excel.png" />
+    <None Include="Resources\Stop_small.png" />
+    <None Include="Resources\Start_small.png" />
+    <None Include="Resources\Search.png" />
+    <None Include="Resources\Upload.png" />
+    <None Include="Image\Add.png" />
+    <None Include="Image\Auto_Off.png" />
+    <None Include="Image\Auto_Plan.png" />
+    <None Include="Image\Auto_Yellow_Flashing.png" />
+    <None Include="Image\Calib.png" />
+    <None Include="Image\Connect.png" />
+    <None Include="Image\Delete.png" />
+    <None Include="Image\Error.png" />
+    <None Include="Image\Lamp_Green.png" />
+    <None Include="Image\Lamp_Green_Error.png" />
+    <None Include="Image\Lamp_Off.png" />
+    <None Include="Image\Lamp_Pes_Green.png" />
+    <None Include="Image\Lamp_Pes_Green_Error.png" />
+    <None Include="Image\Lamp_Pes_Off.png" />
+    <None Include="Image\Lamp_Pes_Red.png" />
+    <None Include="Image\Lamp_Pes_Red_Error.png" />
+    <None Include="Image\Lamp_Pes_Red_Green_Error.png" />
+    <None Include="Image\Lamp_Red.png" />
+    <None Include="Image\Lamp_Red_Error.png" />
+    <None Include="Image\Lamp_Red_Green.png" />
+    <None Include="Image\Lamp_Red_Green_Error.png" />
+    <None Include="Image\Lamp_Red_Yellow.png" />
+    <None Include="Image\Lamp_Red_Yellow_Error.png" />
+    <None Include="Image\Lamp_Red_Yellow_Green.png" />
+    <None Include="Image\Lamp_Red_Yellow_Green_Error.png" />
+    <None Include="Image\Lamp_Yellow.png" />
+    <None Include="Image\Lamp_Yellow_Error.png" />
+    <None Include="Image\Lamp_Yellow_Green.png" />
+    <None Include="Image\Lamp_Yellow_Green_Error.png" />
+    <None Include="Image\Location.png" />
+    <None Include="Image\Manual_All_Red.png" />
+    <None Include="Image\Manual_Plan.png" />
+    <None Include="Image\Manual_Yellow_Flashing.png" />
+    <None Include="Image\Off.png" />
+    <None Include="Image\Remote_Coordination.png" />
+    <None Include="Image\Remote_Off.png" />
+    <None Include="Image\Remote_Plan.png" />
+    <None Include="Image\Remote_Yellow_Flashing.png" />
+    <None Include="Image\Safety_Off.png" />
+    <None Include="Image\Safety_Yellow_Flashing.png" />
+    <None Include="Image\Save.png" />
+    <None Include="Image\setting.png" />
+    <None Include="Image\Unknown.png" />
+    <Content Include="icon.ico" />
+    <None Include="Resources\Download.png" />
+    <None Include="Resources\Beacon.png" />
+    <None Include="Resources\Statistic.png" />
+    <None Include="Resources\Warning.png" />
+    <None Include="Resources\Graph.png" />
+    <None Include="Resources\Monitor.png" />
+    <None Include="Resources\Start.png" />
+    <None Include="Resources\Stop.png" />
+    <None Include="Resources\Graphic.png" />
+    <None Include="Resources\Add.png" />
+    <None Include="Resources\Delete.png" />
+    <None Include="Resources\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{e99d3949-ab5e-4970-80f1-25ebe8f90a0f}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HDSComponent\HDSComponent.csproj">
+      <Project>{d347af56-5d99-4b65-b38c-29c88c084af0}</Project>
+      <Name>HDSComponent</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cc94288425514325b0768b7e45740ff9" Name="Diagram1">
+        <EntityTypeShape EntityType="SapScadaDatabaseModel.Device" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SapScadaDatabaseModel.IOTag" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SapScadaDatabaseModel.IOTagValue" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="SapScadaDatabaseModel.Server" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SapScadaDatabaseModel.SystemEvent" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SapScadaDatabaseModel.User" Width="1.5" PointX="9.875" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SapScadaDatabaseModel.UserRight" Width="1.5" PointX="12.125" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="SapScadaDatabaseModel.FK_IOTag_Device" ManuallyRouted="false" />
+        <AssociationConnector Association="SapScadaDatabaseModel.FK_SystemEvent_Device" ManuallyRouted="false" />
+        <AssociationConnector Association="SapScadaDatabaseModel.FK_IOTagValue_IOTag" ManuallyRouted="false" />
+        <AssociationConnector Association="SapScadaDatabaseModel.FK_UserRight_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SapScadaDatabaseModel.AlarmTag" Width="1.5" PointX="5.625" PointY="5.125" />
+        <AssociationConnector Association="SapScadaDatabaseModel.FK_AlarmTag_IOTag" />
+        <EntityTypeShape EntityType="SapScadaDatabaseModel.AlarmTagValue" Width="1.5" PointX="7.875" PointY="5.375" />
+        <AssociationConnector Association="SapScadaDatabaseModel.FK_AlarmTagValue_AlarmTag" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

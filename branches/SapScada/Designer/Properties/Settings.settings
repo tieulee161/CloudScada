@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Designer.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DriverServerIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">172.16.5.20</Value>
+    </Setting>
+    <Setting Name="VDKPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">8087</Value>
+    </Setting>
+    <Setting Name="OPCPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">8089</Value>
+    </Setting>
+    <Setting Name="LastUpdateTime" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">01/29/2015 09:56:00</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

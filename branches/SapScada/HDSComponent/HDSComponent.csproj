@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D347AF56-5D99-4B65-B38C-29C88C084AF0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HDSComponent</RootNamespace>
+    <AssemblyName>HDSComponent</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DriverCommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\trunk\DataAcquisition\IODriver\bin\Debug\DriverCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.Core, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\V1.6\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\V1.6\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="IODriver">
+      <HintPath>..\..\..\trunk\DataAcquisition\IODriver\bin\Debug\IODriver.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2013.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Telerik\RadControls for WinForms Q3 2013\Bin40\Telerik.WinControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.ChartView, Version=2014.2.715.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.UI, Version=2013.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Telerik\RadControls for WinForms Q3 2013\Bin40\Telerik.WinControls.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2013.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Telerik\RadControls for WinForms Q3 2013\Bin40\TelerikCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="ZedGraph">
+      <HintPath>DLL\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MessageHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TrafficGraph\ColorPositionBlend.cs" />
+    <Compile Include="TrafficGraph\CustomCartesianRenderer.cs" />
+    <Compile Include="TrafficGraph\CustomLineSeriesDrawPart.cs" />
+    <Compile Include="TrafficGraph\TrafficLightData.cs" />
+    <Compile Include="TrafficGraph\TrafficLightItem.cs" />
+    <Compile Include="TrafficGraph\TrafficLightModel.cs" />
+    <Compile Include="TrafficGraph\UCTrafficGraph.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TrafficGraph\UCTrafficGraph.Designer.cs">
+      <DependentUpon>UCTrafficGraph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HDCombobox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\HDDataSource.cs" />
+    <Compile Include="UI\HDPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\HDButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\HDCircle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\HDCircle.Designer.cs">
+      <DependentUpon>HDCircle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HDNumberic.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\HDCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\HDIndicator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\HDMappingTextbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\HDGraph.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\HDTextbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\HDTime.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\HDTrafficDiagram.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\HDTrafficDiagram.Designer.cs">
+      <DependentUpon>HDTrafficDiagram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HDTrafficLight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\HDTrafficLight.Designer.cs">
+      <DependentUpon>HDTrafficLight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LampEventArgs.cs" />
+    <Compile Include="UI\Map.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Map.designer.cs">
+      <DependentUpon>Map.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MyMarker.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrafficGraph\UCTrafficGraph.resx">
+      <DependentUpon>UCTrafficGraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\HDGraph.resx">
+      <DependentUpon>HDGraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\HDIndicator.resx">
+      <DependentUpon>HDIndicator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\HDTrafficDiagram.resx">
+      <DependentUpon>HDTrafficDiagram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\HDTrafficLight.resx">
+      <DependentUpon>HDTrafficLight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Map.resx">
+      <DependentUpon>Map.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{e99d3949-ab5e-4970-80f1-25ebe8f90a0f}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Auto_Off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Auto_Plan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Auto_Yellow_Flashing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Calib.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Manual_All_Red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Manual_Plan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Manual_Yellow_Flashing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Remote_Coordination.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Remote_Off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Remote_Plan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Remote_Yellow_Flashing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Safety_Off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Safety_Yellow_Flashing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Unknown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Connect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Location.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Green_Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Pes_Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Pes_Green_Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Pes_Off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Pes_Red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Pes_Red_Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Pes_Red_Green_Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Red_Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Red_Green_Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Red_Yellow_Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Red_Yellow_Green_Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Yellow_Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Yellow_Green_Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Red_Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Red_Yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Red_Yellow_Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp_Yellow_Green.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
