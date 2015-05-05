@@ -23,7 +23,7 @@ namespace HDSComponent.UI
         private const int ZoomLevel1 = 15;
         private bool _IsDraggingMaker = false;
         private bool _IsAddingNewMarker = false;
-        private bool _IsAllowMovingMarker = false;
+        public bool IsAllowMovingMarker { get; set; }
 
         private float TrackValue
         {
@@ -41,6 +41,7 @@ namespace HDSComponent.UI
         {
             InitializeComponent();
             this.Disposed += new EventHandler(Map_Disposed);
+            IsAllowMovingMarker = false;
         }
 
         private void Map_Disposed(object sender, EventArgs e)
@@ -88,7 +89,7 @@ namespace HDSComponent.UI
         #region add/edit/delete marker
         private void contextIsMovable_Click(object sender, EventArgs e)
         {
-            _IsAllowMovingMarker = contextIsMovable.IsChecked;
+            IsAllowMovingMarker = contextIsMovable.IsChecked;
         }
 
         private void contextDelete_Click(object sender, EventArgs e)
@@ -249,7 +250,7 @@ namespace HDSComponent.UI
 
         private void MainMap_MouseDown(object sender, MouseEventArgs e)
         {
-            if (_IsAllowMovingMarker)
+            if (IsAllowMovingMarker)
             {
                 if ((e.Button == System.Windows.Forms.MouseButtons.Left) && (_CurrentMarker != null) && (_CurrentMarker.IsMouseOver))
                 {
@@ -260,7 +261,7 @@ namespace HDSComponent.UI
 
         private void MainMap_MouseUp(object sender, MouseEventArgs e)
         {
-            if (_IsAllowMovingMarker)
+            if (IsAllowMovingMarker)
             {
                 if (_IsDraggingMaker == true)
                 {
@@ -274,7 +275,7 @@ namespace HDSComponent.UI
 
         private void MainMap_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_IsAllowMovingMarker)
+            if (IsAllowMovingMarker)
             {
                 if ((_IsDraggingMaker) && (e.Button == MouseButtons.Left) && (_CurrentMarker != null))
                 {

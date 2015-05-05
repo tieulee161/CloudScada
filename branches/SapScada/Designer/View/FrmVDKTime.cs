@@ -16,19 +16,36 @@ namespace Designer.View
     {
         public string JunctionName { get; set; }
 
+        private bool _FirstScan { get; set; }
+
         public FrmVDKTime()
         {
             InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            JunctionName = DesignerAccess.GetJunction(JunctionName).DeviceName;
+            _FirstScan = true;
             this.Enter += FrmVDKTime_Enter;
         }
 
         private void FrmVDKTime_Enter(object sender, EventArgs e)
         {
-            this.Enter -= FrmVDKTime_Enter;
-            BackgroundWorker initWorker = new BackgroundWorker();
-            initWorker.DoWork += initWorker_DoWork;
-            initWorker.RunWorkerAsync();
-            initWorker.RunWorkerCompleted += initWorker_RunWorkerCompleted;
+            if(_FirstScan)
+            {
+                _FirstScan = false;
+                BackgroundWorker initWorker = new BackgroundWorker();
+                initWorker.DoWork += initWorker_DoWork;
+                initWorker.RunWorkerAsync();
+                initWorker.RunWorkerCompleted += initWorker_RunWorkerCompleted;
+            }
+            else
+            {
+                ((Form)(this.Tag)).Size = new Size(634, 482);
+            }
+          
         }
 
         private void initWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

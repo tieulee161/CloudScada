@@ -84,7 +84,7 @@ namespace Designer.View
 
                 if ((IsSusscess == true))
                 {
-                    string tagName = string.Format("{0}.ChangeTODConfig", Junc.JunctionName);
+                    string tagName = string.Format("{0}.ChangeTODConfig", Junc.DeviceName);
                     string tagAddress = Program.GetDisplayTagAddress(tagName);
                     Program.SetIOTag(tagName, tagAddress, new object[] { data.ToArray() });
                     Close();

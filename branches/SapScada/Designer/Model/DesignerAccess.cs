@@ -75,13 +75,14 @@ namespace Designer.Model
         }
 
         #region junction
-        public static bool AddJunction(string name, double lat, double lng, string tag, string expression, string map, string note)
+        public static bool AddJunction(string junctionName, string deviceName, double lat, double lng, string tag, string expression, string map, string note)
         {
             bool res = false;
             using (DesignerDatabaseEntities db = new DesignerDatabaseEntities())
             {
                 Junction junc = new Junction();
-                junc.JunctionName = name;
+                junc.JunctionName = junctionName;
+                junc.DeviceName = deviceName;
                 junc.Lat = lat;
                 junc.Lng = lng;
                 junc.Tag = tag;
@@ -105,6 +106,7 @@ namespace Designer.Model
                 if (junc != null)
                 {
                     query.JunctionName = junc.JunctionName;
+                    query.DeviceName = junc.DeviceName;
                     query.Lat = junc.Lat;
                     query.Lng = junc.Lng;
                     query.Tag = junc.Tag;

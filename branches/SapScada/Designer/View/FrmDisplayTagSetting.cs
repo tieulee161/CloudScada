@@ -26,7 +26,9 @@ namespace Designer.View
         private void ThreeColorLampSetting_Load(object sender, EventArgs e)
         {
             IsSuccessful = false;
-            foreach (IOTag tag in DBAccess.GetIOTags(JunctionName))
+            Junction junc = DesignerAccess.GetJunction(JunctionName);
+
+            foreach (IOTag tag in DBAccess.GetIOTags(junc.DeviceName))
             {
                 cbbxTag.Items.Add(tag.Name);
                 cbbxTag.Items[cbbxTag.Items.Count - 1].Font = new Font(cbbxTag.Font.FontFamily, (float)9.75);

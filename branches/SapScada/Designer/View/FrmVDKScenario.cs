@@ -20,20 +20,41 @@ namespace Designer.View
     {
         public string JunctionName { get; set; }
         private Display _Page { get; set; }
+        private bool _FirstScan { get; set; }
+
+        private Junction _Junc { get; set; }
 
         public FrmVDKScenario()
         {
             InitializeComponent();
-            this.Enter += FrmVDKScenario_Enter;
+        }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            _Junc = DesignerAccess.GetJunction(JunctionName);
+            JunctionName = _Junc.DeviceName;
+            _FirstScan = true;
+
+            this.Enter += FrmVDKScenario_Enter;
         }
 
         private void FrmVDKScenario_Enter(object sender, EventArgs e)
         {
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += worker_DoWork;
-            worker.RunWorkerAsync();
-            this.Enter -= FrmVDKScenario_Enter;
+            if(_FirstScan)
+            {
+                _FirstScan = false;
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += worker_DoWork;
+                worker.RunWorkerAsync();
+            }
+            else
+            {
+                ((Form)(this.Tag)).Size = new Size(899, 613);
+            }
+          
+           
         }
 
         private void worker_DoWork(object sender, DoWorkEventArgs e)
@@ -686,7 +707,7 @@ namespace Designer.View
                 f.Pulses = pulses;
                 f.Offset = offset;
                 f.IsActive = isActive;
-                f.Junc = DesignerAccess.GetJunction(JunctionName);
+                f.Junc = _Junc;
                 f.ScenarioID = -1;
                 foreach (RadTreeNode node in treeScenario.Nodes)
                 {

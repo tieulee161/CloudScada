@@ -14,11 +14,17 @@ namespace Designer.View
 {
     public partial class FrmPLCAlarmSetting : Telerik.WinControls.UI.RadForm
     {
-        public string JunctionName;
+        public string JunctionName { get; set; }
 
         public FrmPLCAlarmSetting()
         {
             InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            JunctionName = DesignerAccess.GetJunction(JunctionName).DeviceName;
             this.Enter += FrmPLCAlarmSetting_Enter;
         }
 

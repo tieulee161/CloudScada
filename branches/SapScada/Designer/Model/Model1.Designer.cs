@@ -500,9 +500,9 @@ namespace Designer.Model
             set
             {
                 OnTimeStampChanging(value);
-                ReportPropertyChanging("TimeStamp");
+             //   ReportPropertyChanging("TimeStamp");
                 _TimeStamp = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("TimeStamp");
+             //   ReportPropertyChanged("TimeStamp");
                 OnTimeStampChanged();
             }
         }

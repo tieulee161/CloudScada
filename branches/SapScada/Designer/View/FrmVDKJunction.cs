@@ -65,14 +65,6 @@ namespace Designer.View
             _FrmVDKScenario.JunctionName = this.JunctionName;
             _FrmVDKDetail.JunctionName = this.JunctionName;
 
-            InitMdiChildren(_FrmVDKInfo);
-            InitMdiChildren(_FrmVDKTime);
-            InitMdiChildren(_FrmVDKPeripheral);
-            InitMdiChildren(_FrmVDKScenario);
-            InitMdiChildren(_FrmVDKLight);
-            InitMdiChildren(_FrmVDKPowerCard);
-            InitMdiChildren(_FrmVDKDetail);
-
             _DisplayForm.Add(_FrmVDKInfo);
             _DisplayForm.Add(_FrmVDKTime);
             _DisplayForm.Add(_FrmVDKPeripheral);
@@ -80,6 +72,14 @@ namespace Designer.View
             _DisplayForm.Add(_FrmVDKLight);
             _DisplayForm.Add(_FrmVDKPowerCard);
             _DisplayForm.Add(_FrmVDKDetail);
+
+            InitMdiChildren(_FrmVDKInfo);
+            InitMdiChildren(_FrmVDKTime);
+            InitMdiChildren(_FrmVDKPeripheral);
+            InitMdiChildren(_FrmVDKScenario);
+            InitMdiChildren(_FrmVDKLight);
+            InitMdiChildren(_FrmVDKPowerCard);
+            InitMdiChildren(_FrmVDKDetail);
 
             Timer timer1 = new Timer();
             timer1.Interval = 1;
@@ -101,7 +101,9 @@ namespace Designer.View
 
         private void InitMdiChildren(Form f)
         {
+            f.Tag = this;
             f.MdiParent = this;
+           
         }
 
         private void FrmVDKJunction_FormClosing(object sender, FormClosingEventArgs e)

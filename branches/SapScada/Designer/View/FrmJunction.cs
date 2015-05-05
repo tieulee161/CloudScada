@@ -30,7 +30,8 @@ namespace Designer.View
                 if (Junc != null)
                 {
                     string oldName = Junc.JunctionName;
-                    Junc.JunctionName = cbbxName.Text;
+                    Junc.JunctionName = txtJunctionName.Text;
+                    Junc.DeviceName = cbbxDeviceName.Text;
                     Junc.Tag = cbbxTag.Text;
                     Junc.Expression = txtExpression.Text;
                     Junc.Lat = MarkerInfo.Lat;
@@ -53,23 +54,22 @@ namespace Designer.View
 
         private void FrmJunction_Load(object sender, EventArgs e)
         {
-           
-
             List<Device> devices = DBAccess.GetDevices();
             for (int j = 0; j < devices.Count; j++)
             {
-                cbbxName.Items.Add(devices[j].Name);
-                cbbxName.Items[cbbxName.Items.Count - 1].Font = new Font(cbbxName.Font.FontFamily, (float)9.75);
+                cbbxDeviceName.Items.Add(devices[j].Name);
+                cbbxDeviceName.Items[cbbxDeviceName.Items.Count - 1].Font = new Font(cbbxDeviceName.Font.FontFamily, (float)9.75);
             }
 
             Junc = DesignerAccess.GetJunction(MarkerInfo.MarkerName);
             if (Junc != null)
             {
-                cbbxName.Text = Junc.JunctionName;
+                txtJunctionName.Text = Junc.JunctionName;
+                cbbxDeviceName.Text = Junc.DeviceName;
                 cbbxTag.Text = Junc.Tag;
                 txtExpression.Text = Junc.Expression;
 
-                List<IOTag> ioTags = DBAccess.GetIOTags(cbbxName.Text);
+                List<IOTag> ioTags = DBAccess.GetIOTags(cbbxDeviceName.Text);
                 for (int j = 0; j < ioTags.Count; j++)
                 {
                     cbbxTag.Items.Add(ioTags[j].Name);
@@ -80,7 +80,7 @@ namespace Designer.View
 
         private void cbbxName_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
-            string deviceName = cbbxName.Text.Trim();
+            string deviceName = cbbxDeviceName.Text.Trim();
             cbbxTag.Items.Clear();
 
             List<IOTag> ioTags = DBAccess.GetIOTags(deviceName);

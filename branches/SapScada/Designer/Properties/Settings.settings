@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="DriverServerIP" Type="System.String" Scope="User">
-      <Value Profile="(Default)">172.16.5.20</Value>
+      <Value Profile="(Default)">172.16.2.35</Value>
     </Setting>
     <Setting Name="VDKPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8087</Value>

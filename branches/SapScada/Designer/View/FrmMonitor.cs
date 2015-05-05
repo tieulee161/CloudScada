@@ -62,22 +62,27 @@ namespace Designer.View
 
         private void GMap_RaiseMarkerDoubleClickEvent(object sender, HDSComponent.UI.MarkerEventArgs e)
         {
-            Device dev = DBAccess.GetDevice(e.MarkerName);
-            if (dev != null)
-            {
-                if (dev.Driver == Common.DriverType.VDK.ToString())
-                {
-                    FrmVDKJunction f = new FrmVDKJunction();
-                    f.JunctionName = e.MarkerName;
-                    f.Show(this);
-                }
-                else if (dev.Driver == Common.DriverType.OPC.ToString())
-                {
-                    FrmPLCJunction f = new FrmPLCJunction();
-                    f.JunctionName = e.MarkerName;
-                    f.Show(this);
-                }
-            }
+           if(GMap.IsAllowMovingMarker == false)
+           {
+               string deviceName = DesignerAccess.GetJunction(e.MarkerName).DeviceName;
+               Device dev = DBAccess.GetDevice(deviceName);
+               if (dev != null)
+               {
+                   if (dev.Driver == Common.DriverType.VDK.ToString())
+                   {
+                       FrmVDKJunction f = new FrmVDKJunction();
+                       f.JunctionName = e.MarkerName;
+                       f.Show(this);
+                   }
+                   else if (dev.Driver == Common.DriverType.OPC.ToString())
+                   {
+                       FrmPLCJunction f = new FrmPLCJunction();
+                       f.JunctionName = e.MarkerName;
+                       f.Show(this);
+                   }
+               }
+           }
+            
 
             //Thread t = new Thread(new ThreadStart(() =>
             //    {
@@ -119,7 +124,7 @@ namespace Designer.View
 
         private void GMap_RaiseAddNewMarkerEvent(object sender, HDSComponent.UI.MarkerEventArgs e)
         {
-            if (DesignerAccess.AddJunction(e.MarkerName, e.Lat, e.Lng, "", "", "", ""))
+            if (DesignerAccess.AddJunction(e.MarkerName, e.MarkerName, e.Lat, e.Lng, "", "", "", ""))
             {
                 FrmJunction f = new FrmJunction();
                 f.MarkerInfo = e;

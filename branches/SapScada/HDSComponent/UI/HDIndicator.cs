@@ -117,8 +117,10 @@ namespace HDSComponent.UI
                     this.BackgroundImage = null;
                 }
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            { 
+
+            }
         }
 
         public string DisplayText

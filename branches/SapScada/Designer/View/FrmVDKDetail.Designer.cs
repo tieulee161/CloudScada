@@ -331,7 +331,6 @@
             this.Text = "Giao lộ";
             this.ThemeName = "ControlDefault";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmVDKDetail_FormClosing);
-            this.Enter += new System.EventHandler(this.FrmVDKDetail_Enter);
             ((System.ComponentModel.ISupportInitialize)(this.picJunction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);

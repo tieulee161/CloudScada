@@ -14,11 +14,17 @@ namespace Designer.View
 {
     public partial class FrmPLCParametterSetting : Telerik.WinControls.UI.RadForm
     {
-        public string JunctionName;
+        public string JunctionName { get; set; }
 
         public FrmPLCParametterSetting()
         {
             InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            JunctionName = DesignerAccess.GetJunction(JunctionName).DeviceName;
             this.Enter += FrmPLCParametterSetting_Enter;
         }
 

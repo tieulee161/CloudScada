@@ -165,7 +165,7 @@
             this.dtgTOD.Name = "dtgTOD";
             this.dtgTOD.ReadOnly = true;
             this.dtgTOD.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtgTOD.Size = new System.Drawing.Size(443, 206);
+            this.dtgTOD.Size = new System.Drawing.Size(718, 206);
             this.dtgTOD.TabIndex = 1;
             // 
             // hdTrafficDiagram1
@@ -173,7 +173,7 @@
             this.hdTrafficDiagram1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hdTrafficDiagram1.Location = new System.Drawing.Point(2, 18);
             this.hdTrafficDiagram1.Name = "hdTrafficDiagram1";
-            this.hdTrafficDiagram1.Size = new System.Drawing.Size(443, 173);
+            this.hdTrafficDiagram1.Size = new System.Drawing.Size(718, 334);
             this.hdTrafficDiagram1.TabIndex = 2;
             // 
             // treeScenario
@@ -198,7 +198,7 @@
             this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
             this.radGroupBox1.Name = "radGroupBox1";
             this.radGroupBox1.Padding = new System.Windows.Forms.Padding(2, 50, 2, 2);
-            this.radGroupBox1.Size = new System.Drawing.Size(169, 422);
+            this.radGroupBox1.Size = new System.Drawing.Size(169, 583);
             this.radGroupBox1.TabIndex = 4;
             this.radGroupBox1.Text = "Kịch bản";
             // 
@@ -212,7 +212,7 @@
             this.radGroupBox2.Location = new System.Drawing.Point(2, 229);
             this.radGroupBox2.Name = "radGroupBox2";
             this.radGroupBox2.Padding = new System.Windows.Forms.Padding(2, 22, 2, 2);
-            this.radGroupBox2.Size = new System.Drawing.Size(165, 191);
+            this.radGroupBox2.Size = new System.Drawing.Size(165, 352);
             this.radGroupBox2.TabIndex = 5;
             this.radGroupBox2.Text = "Ngày hoạt động";
             // 
@@ -221,7 +221,7 @@
             this.treeDateType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeDateType.Location = new System.Drawing.Point(2, 22);
             this.treeDateType.Name = "treeDateType";
-            this.treeDateType.Size = new System.Drawing.Size(161, 167);
+            this.treeDateType.Size = new System.Drawing.Size(161, 328);
             this.treeDateType.SpacingBetweenNodes = -1;
             this.treeDateType.TabIndex = 4;
             this.treeDateType.Text = "radTreeView2";
@@ -251,7 +251,7 @@
             this.radGroupBox3.Location = new System.Drawing.Point(169, 0);
             this.radGroupBox3.Name = "radGroupBox3";
             this.radGroupBox3.Padding = new System.Windows.Forms.Padding(2, 21, 2, 2);
-            this.radGroupBox3.Size = new System.Drawing.Size(447, 229);
+            this.radGroupBox3.Size = new System.Drawing.Size(722, 229);
             this.radGroupBox3.TabIndex = 5;
             this.radGroupBox3.Text = "Thời đoạn";
             // 
@@ -274,7 +274,7 @@
             this.radGroupBox5.HeaderText = "Giản đồ";
             this.radGroupBox5.Location = new System.Drawing.Point(169, 229);
             this.radGroupBox5.Name = "radGroupBox5";
-            this.radGroupBox5.Size = new System.Drawing.Size(447, 193);
+            this.radGroupBox5.Size = new System.Drawing.Size(722, 354);
             this.radGroupBox5.TabIndex = 6;
             this.radGroupBox5.Text = "Giản đồ";
             // 
@@ -282,7 +282,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 422);
+            this.ClientSize = new System.Drawing.Size(891, 583);
             this.Controls.Add(this.radGroupBox5);
             this.Controls.Add(this.radGroupBox3);
             this.Controls.Add(this.radGroupBox1);

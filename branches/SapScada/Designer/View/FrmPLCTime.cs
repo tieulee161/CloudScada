@@ -14,11 +14,17 @@ namespace Designer.View
 {
     public partial class FrmPLCTime : Telerik.WinControls.UI.RadForm
     {
-        public string JunctionName;
+        public string JunctionName { get; set; }
 
         public FrmPLCTime()
         {
             InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            JunctionName = DesignerAccess.GetJunction(JunctionName).DeviceName;
             this.Enter += FrmPLCControl_Enter;
         }
 

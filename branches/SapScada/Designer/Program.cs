@@ -25,7 +25,9 @@ namespace Designer
         //public static string version = "2.0.11"; // updated 14/1/2015 - update alarm for PLC and alarm news
         //public static string version = "2.0.12"; // updated 21/1/2015 - update alarm for PLC and alarm news
        // public static string version = "2.0.13"; // updated 21/1/2015 - update trend and update time every 4 hours
-        public static string version = "2.1.0"; // updated 3/2/2015 - Update reset error layout for PLC Junction
+  //      public static string version = "2.1.0"; // updated 3/2/2015 - Update reset error layout for PLC Junction
+   //     public static string version = "2.1.1"; // updated 8/4/2015 - 1 device can control 1 or more junctions.
+        public static string version = "2.1.2"; // updated 5/5/2015 - when moving marker is allowed, can not open junction form (VDKJuntion or OPCJunction), fix update TOD
         #endregion
 
         public static bool IsRunning = false;

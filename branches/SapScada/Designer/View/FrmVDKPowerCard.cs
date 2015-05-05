@@ -16,43 +16,57 @@ namespace Designer.View
     public partial class FrmVDKPowerCard : Telerik.WinControls.UI.RadForm
     {
         public string JunctionName { get; set; }
-        private int _FirstScan = 1;
+
+        private bool _FirstScan { get; set; }
+
         private Display _Page { get; set; }
 
         public FrmVDKPowerCard()
         {
             InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            JunctionName = DesignerAccess.GetJunction(JunctionName).DeviceName;
+            _FirstScan = true;
+
             this.Enter += FrmVDKPowerCard_Enter;
             this.spinPLCIndex.ValueChanged += spinPLCIndex_ValueChanged;
         }
-
+      
         private void spinPLCIndex_ValueChanged(object sender, EventArgs e)
         {
-            BackgroundWorker initWorker = new BackgroundWorker();
-            initWorker.DoWork += initWorker_DoWork;
-            initWorker.RunWorkerAsync();
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += worker_DoWork;
+            worker.RunWorkerAsync();
         }
 
         private void FrmVDKPowerCard_Enter(object sender, EventArgs e)
         {
-            BackgroundWorker initWorker = new BackgroundWorker();
-            initWorker.DoWork += initWorker_DoWork;
-            initWorker.RunWorkerAsync();
-            this.Enter -= FrmVDKPowerCard_Enter;
+            if(_FirstScan)
+            {
+                _FirstScan = false;
+                BackgroundWorker initWorker = new BackgroundWorker();
+                initWorker.DoWork += initWorker_DoWork;
+                initWorker.RunWorkerAsync();
+            }
+            else
+            {
+                ((Form)(this.Tag)).Size = new Size(634, 482);
+            }
+        }
+
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            ChangeTagAddress((int)spinPLCIndex.Value);
         }
 
         private void initWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (_FirstScan == 1)
-            {
-                InitDisplayTag();
-                _FirstScan++;
-            }
-            else
-            {
-                ChangeTagAddress((int)spinPLCIndex.Value);
-            }
-
+            InitDisplayTag();
         }
 
         private void InitDisplayTag(int cardId = 0)

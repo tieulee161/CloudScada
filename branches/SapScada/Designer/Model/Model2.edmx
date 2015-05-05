@@ -17,6 +17,7 @@
           <Property Name="Expression" Type="nvarchar" MaxLength="200" />
           <Property Name="Map" Type="nvarchar" MaxLength="300" />
           <Property Name="Note" Type="nvarchar" MaxLength="200" />
+          <Property Name="DeviceName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Lamp">
           <Key>
@@ -80,6 +81,7 @@
           <Property Name="Map" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Lamps" Relationship="DesignerDatabaseModel.FK_Lamp_Junction" FromRole="Junction" ToRole="Lamp" />
+          <Property Name="DeviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Lamp">
           <Key>
@@ -120,6 +122,7 @@
           <EntitySetMapping Name="Junctions">
             <EntityTypeMapping TypeName="DesignerDatabaseModel.Junction">
               <MappingFragment StoreEntitySet="Junction">
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="Map" ColumnName="Map" />
                 <ScalarProperty Name="Expression" ColumnName="Expression" />

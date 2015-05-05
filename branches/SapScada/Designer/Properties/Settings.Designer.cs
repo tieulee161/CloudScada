@@ -25,7 +25,7 @@ namespace Designer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("172.16.5.20")]
+        [global::System.Configuration.DefaultSettingValueAttribute("172.16.2.35")]
         public string DriverServerIP {
             get {
                 return ((string)(this["DriverServerIP"]));

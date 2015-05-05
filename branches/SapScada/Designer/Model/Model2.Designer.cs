@@ -350,6 +350,30 @@ namespace Designer.Model
         private global::System.String _Note;
         partial void OnNoteChanging(global::System.String value);
         partial void OnNoteChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DeviceName
+        {
+            get
+            {
+                return _DeviceName;
+            }
+            set
+            {
+                OnDeviceNameChanging(value);
+                ReportPropertyChanging("DeviceName");
+                _DeviceName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DeviceName");
+                OnDeviceNameChanged();
+            }
+        }
+        private global::System.String _DeviceName;
+        partial void OnDeviceNameChanging(global::System.String value);
+        partial void OnDeviceNameChanged();
 
         #endregion
 

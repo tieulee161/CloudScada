@@ -22,48 +22,73 @@ namespace Designer.View
     {
         public string JunctionName { get; set; }
         private Display _Page { get; set; }
+        private bool _FirstScan { get; set; }
         public FrmVDKDetail()
         {
             InitializeComponent();
         }
 
         #region event
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            _FirstScan = true;
+
+            this.Enter += new System.EventHandler(this.FrmVDKDetail_Enter);
+        }
+
         private void FrmVDKDetail_Enter(object sender, EventArgs e)
         {
-            this.Enter -= FrmVDKDetail_Enter;
-            menuChangeMap.Click += Menu_Click;
-            menuVehicleGreen.Click += Menu_Click;
-            menuVehicleYellow.Click += Menu_Click;
-            menuVehicleRed.Click += Menu_Click;
-            menuPedestrianGreen.Click += Menu_Click;
-            menuPedestrianRed.Click += Menu_Click;
-            menuArrowGreenAhead.Click += Menu_Click;
-            menuArrowGreenBack.Click += Menu_Click;
-            menuArrowGreenLeft.Click += Menu_Click;
-            menuArrowGreenRight.Click += Menu_Click;
-            menuArrowRedAhead.Click += Menu_Click;
-            menuArrowRedBack.Click += Menu_Click;
-            menuArrowRedLeft.Click += Menu_Click;
-            menuArrowRedRight.Click += Menu_Click;
-            menuArrowYellowAhead.Click += Menu_Click;
-            menuArrowYellowBack.Click += Menu_Click;
-            menuArrowYellowLeft.Click += Menu_Click;
-            menuArrowYellowRight.Click += Menu_Click;
-
-            picJunction.DragEnter += picJunction_DragEnter;
-            picJunction.DragDrop += picJunction_DragDrop;
-            Junction junc = DesignerAccess.GetJunction(JunctionName);
-            if(junc != null)
+            if (_FirstScan)
             {
-                if (File.Exists(junc.Map))
+                _FirstScan = false;
+                menuChangeMap.Click += Menu_Click;
+                menuVehicleGreen.Click += Menu_Click;
+                menuVehicleYellow.Click += Menu_Click;
+                menuVehicleRed.Click += Menu_Click;
+                menuPedestrianGreen.Click += Menu_Click;
+                menuPedestrianRed.Click += Menu_Click;
+                menuArrowGreenAhead.Click += Menu_Click;
+                menuArrowGreenBack.Click += Menu_Click;
+                menuArrowGreenLeft.Click += Menu_Click;
+                menuArrowGreenRight.Click += Menu_Click;
+                menuArrowRedAhead.Click += Menu_Click;
+                menuArrowRedBack.Click += Menu_Click;
+                menuArrowRedLeft.Click += Menu_Click;
+                menuArrowRedRight.Click += Menu_Click;
+                menuArrowYellowAhead.Click += Menu_Click;
+                menuArrowYellowBack.Click += Menu_Click;
+                menuArrowYellowLeft.Click += Menu_Click;
+                menuArrowYellowRight.Click += Menu_Click;
+
+                picJunction.DragEnter += picJunction_DragEnter;
+                picJunction.DragDrop += picJunction_DragDrop;
+                Junction junc = DesignerAccess.GetJunction(JunctionName);
+                if (junc != null)
                 {
-                    picJunction.BackgroundImage = Image.FromFile(junc.Map);
+                    if (File.Exists(junc.Map))
+                    {
+                        picJunction.BackgroundImage = Image.FromFile(junc.Map);
+                        ((Form)(this.Tag)).Size = picJunction.BackgroundImage.Size;
+                    }
+                }
+
+                BackgroundWorker initWorker = new BackgroundWorker();
+                initWorker.DoWork += initWorker_DoWork;
+                initWorker.RunWorkerAsync();
+            }
+            else
+            {
+                if (picJunction.BackgroundImage != null)
+                {
+                    ((Form)(this.Tag)).Size = picJunction.BackgroundImage.Size;
+                }
+                else
+                {
+                    ((Form)(this.Tag)).Size = new Size(624, 452);
                 }
             }
-
-            BackgroundWorker initWorker = new BackgroundWorker();
-            initWorker.DoWork += initWorker_DoWork;
-            initWorker.RunWorkerAsync();
         }
 
         private void initWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -109,7 +134,9 @@ namespace Designer.View
                     if (File.Exists(map))
                     {
                         DesignerAccess.SetMap(JunctionName, map);
-                        picJunction.BackgroundImage = Image.FromFile(map);
+                        Image img = Image.FromFile(map);
+                        picJunction.BackgroundImage = img;
+                        ((Form)(this.Tag)).Size = img.Size;
                     }
                     else
                     {
@@ -242,10 +269,10 @@ namespace Designer.View
         private void menuSetting_Click(object sender, EventArgs e)
         {
             RadMenuItem menu = (RadMenuItem)sender;
-            if(menu != null)
+            if (menu != null)
             {
                 HDIndicator indicator = (HDIndicator)menu.Tag;
-                if(indicator != null)
+                if (indicator != null)
                 {
                     FrmDisplayTagSetting f = new FrmDisplayTagSetting();
                     f.JunctionName = JunctionName;
@@ -330,7 +357,7 @@ namespace Designer.View
         {
             indicator.Id = Id;
             indicator.Size = new Size(32, 32);
-            
+
             indicator.DisplayText = "";
             indicator.Location = new Point(X, Y);
             indicator.LocationChanged += indicator_LocationChanged;
@@ -429,9 +456,9 @@ namespace Designer.View
 
         #endregion
 
-       
 
-        
+
+
 
 
     }
