@@ -7,6 +7,7 @@ namespace Designer.Model
 {
     public partial class IOTag
     {
-        public object Value2;
+        public object Value2 { get; set; }
+        public object OldValue2 { get; set; }
     }
 }

@@ -24,6 +24,8 @@ namespace Designer.View
 
         private Junction _Junc { get; set; }
 
+        private int _CurrentDiagramId { get; set; }
+
         public FrmVDKScenario()
         {
             InitializeComponent();
@@ -38,6 +40,8 @@ namespace Designer.View
             _FirstScan = true;
 
             this.Enter += FrmVDKScenario_Enter;
+            dtgTOD.Click += dtgTOD_Click;
+            dtgTOD.DoubleClick += dtgTOD_DoubleClick;
         }
 
         private void FrmVDKScenario_Enter(object sender, EventArgs e)
@@ -116,7 +120,15 @@ namespace Designer.View
                             dtgTOD.Rows[j].Cells[i].Style.DrawFill = true;
                             dtgTOD.Rows[j].Cells[i].Style.BackColor = Color.Lime;
                         }
-                        break;
+                    }
+                    else
+                    {
+                        for (int i = 0; i < dtgTOD.Columns.Count; i++)
+                        {
+                            dtgTOD.Rows[j].Cells[i].Style.CustomizeFill = true;
+                            dtgTOD.Rows[j].Cells[i].Style.DrawFill = true;
+                            dtgTOD.Rows[j].Cells[i].Style.BackColor = Color.White;
+                        }
                     }
                 }
             }
@@ -513,8 +525,7 @@ namespace Designer.View
                 treeScenario.TreeViewElement.TreeNodeProvider.Reset();
 
                 treeScenario.SelectedNodeChanged += treeScenario_SelectedNodeChanged;
-                dtgTOD.Click += dtgTOD_Click;
-                dtgTOD.DoubleClick += dtgTOD_DoubleClick;
+             
             }
         }
         private void treeScenario_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
@@ -640,11 +651,16 @@ namespace Designer.View
             if (dtgTOD.SelectedRows.Count > 0)
             {
                 int diagramId = (int)(decimal)dtgTOD.SelectedRows[0].Cells["colDiagramID"].Value;
-                if (_Diagrams.ContainsKey(diagramId))
+                if(diagramId != _CurrentDiagramId)
                 {
-                    IODriver.DiagramInfo diagram = _Diagrams[diagramId];
-                    DisplayDiagram(diagram);
+                    if (_Diagrams.ContainsKey(diagramId))
+                    {
+                        _CurrentDiagramId = diagramId;
+                        IODriver.DiagramInfo diagram = _Diagrams[diagramId];
+                        DisplayDiagram(diagram);
+                    }
                 }
+               
             }
         }
 
@@ -684,7 +700,7 @@ namespace Designer.View
 
         private void dtgTOD_DoubleClick(object sender, EventArgs e)
         {
-            dtgTOD.DoubleClick -= dtgTOD_DoubleClick;
+          //  dtgTOD.DoubleClick -= dtgTOD_DoubleClick;
             if (dtgTOD.SelectedRows.Count > 0)
             {
                 bool isActive = (bool)dtgTOD.SelectedRows[0].Cells["colActive"].Value;
@@ -728,7 +744,7 @@ namespace Designer.View
                     dtgTOD.SelectedRows[0].Cells["colOffset"].Value = f.Offset;
                 }
             }
-            dtgTOD.DoubleClick += dtgTOD_DoubleClick;
+         //   dtgTOD.DoubleClick += dtgTOD_DoubleClick;
         }
         #endregion
 

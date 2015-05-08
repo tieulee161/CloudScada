@@ -142,10 +142,15 @@ namespace Designer.View
                 HDSComponent.UI.MyMarker marker = GMap.AddMarker(juncs[j].JunctionName, (double)juncs[j].Lat, (double)juncs[j].Lng);
                 marker.DisplayTag.Name = juncs[j].Tag;
                 marker.DisplayTag.Address = Program.GetDisplayTagAddress(marker.DisplayTag.Name);
+                marker.DisplayTag.RaiseTagValueChangedEvent += DisplayTag_RaiseTagValueChangedEvent;
                 disp.AddTag(marker.DisplayTag);
-
             }
             Program.AddDisplayForm(this, new List<Display>() { disp });
+        }
+
+        private void DisplayTag_RaiseTagValueChangedEvent(object sender, EventArgs e)
+        {
+            
         }
 
         private void FrmMonitor_FormClosed(object sender, FormClosedEventArgs e)

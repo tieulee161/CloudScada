@@ -146,11 +146,13 @@
     <Compile Include="Core\Display.cs" />
     <Compile Include="Core\Driver.cs" />
     <Compile Include="Core\IOTag.cs" />
+    <Compile Include="Core\Notification.cs" />
     <Compile Include="Core\Root.cs" />
     <Compile Include="Core\Task.cs" />
     <Compile Include="Model\DBAccess.cs" />
     <Compile Include="Model\DesignerAccess.cs" />
     <Compile Include="Model\DesignerService.cs" />
+    <Compile Include="Model\Email.cs" />
     <Compile Include="Model\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -42,18 +42,19 @@ namespace Designer.Core
         private void Initialize_Driver()
         {
             IDriver = new Dictionary<DriverType, Driver>();
+            INotification iNotify = new EmailNotification();
 
             // VDK Driver
             ITLCDriver vdkDriver = null;
             string serverIP = Properties.Settings.Default.DriverServerIP;
             int vdkPort = Properties.Settings.Default.VDKPort;
-            Driver driver = new Driver(DriverType.VDK, vdkDriver, serverIP, vdkPort);
+            Driver driver = new Driver(DriverType.VDK, vdkDriver, iNotify, serverIP, vdkPort);
             this.AddDriver(driver);
 
             // OPC Driver
             ITLCDriver opcDriver = null;
             int opcPort = Properties.Settings.Default.OPCPort;
-            Driver driver1 = new Driver(DriverType.OPC, opcDriver, serverIP, opcPort);
+            Driver driver1 = new Driver(DriverType.OPC, opcDriver, iNotify, serverIP, opcPort);
             this.AddDriver(driver1);
 
             List<Device> devs = DBAccess.GetDevices();
@@ -257,7 +258,7 @@ namespace Designer.Core
 
         public void RefeshAlarmTask(string taskName)
         {
-            
+
         }
 
         public void StopAlarmTask()
@@ -355,7 +356,7 @@ namespace Designer.Core
 
         public void StopDriver()
         {
-            foreach(Driver driver in IDriver.Values)
+            foreach (Driver driver in IDriver.Values)
             {
                 driver.Stop();
             }

@@ -166,13 +166,7 @@ namespace Designer.Core
                                             }
                                         }
                                     }
-
-
                                 }
-
-
-
-
                                 break;
                             case AlarmType.Analog:
                                 break;

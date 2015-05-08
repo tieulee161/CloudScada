@@ -167,6 +167,19 @@ namespace Designer.Model
             return res;
         }
 
+        public static List<Junction> GetJunctions(string deviceName)
+        {
+            List<Junction> res = new List<Junction>();
+            using (DesignerDatabaseEntities db = new DesignerDatabaseEntities())
+            {
+                var query = from q in db.Junctions
+                            where q.DeviceName == deviceName
+                            select q;
+                res = query.ToList();
+            }
+            return res;
+        }
+
         public static List<Junction> GetJunctions()
         {
             List<Junction> res = new List<Junction>();

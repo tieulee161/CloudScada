@@ -16,11 +16,13 @@ namespace Designer.Core
         public Root Parent;
         public ITLCDriver IODriver;
         public DriverType Type;
+        public INotification INotify;
 
-        public Driver(DriverType driverType, ITLCDriver driver, string serverIP, int port)
+        public Driver(DriverType driverType, ITLCDriver driver, INotification iNofity, string serverIP, int port)
         {
             IODriver = driver;
             Type = driverType;
+            INotify = iNofity;
             if (driverType == DriverType.VDK)
             {
                 VDKDriver.ConnectToServer(serverIP, port);
@@ -136,6 +138,8 @@ namespace Designer.Core
 
                 if (res)
                 {
+                    INotify.Notify(tag, tag.OldValue2, tag.Value2);
+                    tag.OldValue2 = tag.Value2;
                     tag.Value2 = data;
                     DBAccess.UpdateValueForIOTag(tag.Device.Name, tag.Name, data, time, (int)Common.Quality.Good);
                 }

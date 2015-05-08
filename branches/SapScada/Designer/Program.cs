@@ -24,10 +24,13 @@ namespace Designer
         //public static string version = "2.0.10"; // updated 14/1/2015 - update alarm serverb
         //public static string version = "2.0.11"; // updated 14/1/2015 - update alarm for PLC and alarm news
         //public static string version = "2.0.12"; // updated 21/1/2015 - update alarm for PLC and alarm news
-       // public static string version = "2.0.13"; // updated 21/1/2015 - update trend and update time every 4 hours
-  //      public static string version = "2.1.0"; // updated 3/2/2015 - Update reset error layout for PLC Junction
-   //     public static string version = "2.1.1"; // updated 8/4/2015 - 1 device can control 1 or more junctions.
-        public static string version = "2.1.2"; // updated 5/5/2015 - when moving marker is allowed, can not open junction form (VDKJuntion or OPCJunction), fix update TOD
+        // public static string version = "2.0.13"; // updated 21/1/2015 - update trend and update time every 4 hours
+        //      public static string version = "2.1.0"; // updated 3/2/2015 - Update reset error layout for PLC Junction
+        //     public static string version = "2.1.1"; // updated 8/4/2015 - 1 device can control 1 or more junctions.
+      //  public static string version = "2.1.2"; // updated 5/5/2015 - when moving marker is allowed, can not open junction form (VDKJuntion or OPCJunction), fix update TOD
+      //  public static string version = "2.1.3"; // updated 8/5/2015 - when losting connection and lost light, system send notifcatetion to supervisor via email : add email.cs and INotify interface and EmailNotify class
+        public static string version = "2.1.4"; // updated 8/5/2015 - update FrmVDKScenario : when currentTODId changed, unhighlight this row and highlight another row
+       
         #endregion
 
         public static bool IsRunning = false;
@@ -51,7 +54,7 @@ namespace Designer
 
         public static void StartRuntime()
         {
-        //    Core = new Root();
+            //    Core = new Root();
             Core.Initialize();
             Core.RunTask();
             Core.RunAlarmTask();
@@ -97,7 +100,7 @@ namespace Designer
             f.Enter += f_Enter;
             f.Leave += f_Leave;
         }
-                                            
+
         private static void f_Leave(object sender, EventArgs e)
         {
             Form f = (Form)sender;
@@ -139,7 +142,7 @@ namespace Designer
 
         public static void RefreshTask(string taskName)
         {
-           
+
         }
 
         public static void SetIOTag(string tagName, string tagAddress, object[] data)

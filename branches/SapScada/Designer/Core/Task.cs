@@ -24,8 +24,6 @@ namespace Designer.Core
         public Root Parent;
         public bool IsRunning { get; set; }
 
-
-
         public Task(string name, int period)
         {
             Name = name;
