@@ -370,6 +370,10 @@ namespace Designer.View
 
         private void FrmPLCControl_FormClosing(object sender, FormClosingEventArgs e)
         {
+        }
+
+        public void StopUpdating()
+        {
             Program.RemoveDisplayForm(this);
         }
     }

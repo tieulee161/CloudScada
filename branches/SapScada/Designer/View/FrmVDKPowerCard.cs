@@ -170,6 +170,11 @@ namespace Designer.View
 
         private void FrmVDKPowerCard_FormClosing(object sender, FormClosingEventArgs e)
         {
+           
+        }
+
+        public void StopUpdating()
+        {
             Program.RemoveDisplayForm(this);
         }
     }

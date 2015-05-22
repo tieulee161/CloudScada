@@ -16,7 +16,7 @@ namespace IODriver
     {
       //  public static string Version = "V2.0.0";
 
-        public static string DriverUrl = string.Format("tcp://{0}:{1}/VDKDriver", Properties.Settings.Default.ServerIP, Properties.Settings.Default.Port);
+        public static string DriverUrl ;//= string.Format("tcp://{0}:{1}/VDKDriver", Properties.Settings.Default.ServerIP, Properties.Settings.Default.Port);
 
         public static ITLCDriver Server;
 

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public enum DriverType
     {
         VDK = 0,

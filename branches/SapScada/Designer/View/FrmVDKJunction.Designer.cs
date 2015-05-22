@@ -80,7 +80,6 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Thông tin tủ điều khiển";
             this.ThemeName = "ControlDefault";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmVDKJunction_FormClosing);
             this.Load += new System.EventHandler(this.FrmVDKJunction_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);

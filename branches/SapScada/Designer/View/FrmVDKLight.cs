@@ -819,6 +819,11 @@ namespace Designer.View
 
         private void FrmVDKLight_FormClosing(object sender, FormClosingEventArgs e)
         {
+          //  Program.RemoveDisplayForm(this);
+        }
+
+        public void StopUpdating()
+        {
             Program.RemoveDisplayForm(this);
         }
 

@@ -18,17 +18,15 @@ namespace Designer.View
         FrmPLCAlarmSetting _FrmAlarmSetting;
         FrmPLCTime _FrmPLCTime;
         public string JunctionName;
-        List<Form> _DisplayForm;
+
         int _Index = 0;
 
         public FrmPLCJunction()
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
-            _DisplayForm = new List<Form>();
+            this.FormClosed += FrmPLCJunction_FormClosed;
         }
-
-
 
         private void FrmPLCJunction_Load(object sender, EventArgs e)
         {
@@ -75,13 +73,6 @@ namespace Designer.View
             _FrmNormalDaySetting.MdiParent = this;
             _FrmControl.MdiParent = this;
 
-            _DisplayForm.Add(_FrmControl);
-            _DisplayForm.Add(_FrmNormalDaySetting);
-            _DisplayForm.Add(_FrmSpecialDaySetting);
-            _DisplayForm.Add(_FrmParametterSetting);
-            _DisplayForm.Add(_FrmAlarmSetting);
-            _DisplayForm.Add(_FrmPLCTime);
-
             Timer timer1 = new Timer();
             timer1.Interval = 1;
             timer1.Tick += timer1_Tick;
@@ -104,16 +95,16 @@ namespace Designer.View
         void loadWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             // do nothing
-
         }
 
-        private void FrmPLCJunction_FormClosing(object sender, FormClosingEventArgs e)
+        private void FrmPLCJunction_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Hide();
-            for (int j = _DisplayForm.Count - 1; j >= 0; j--)
-            {
-                _DisplayForm[j].Close();
-            }
+            _FrmPLCTime.StopUpdating();
+            _FrmAlarmSetting.StopUpdating();
+            _FrmParametterSetting.StopUpdating();
+            _FrmSpecialDaySetting.StopUpdating();
+            _FrmNormalDaySetting.StopUpdating();
+            _FrmControl.StopUpdating();
         }
     }
 }

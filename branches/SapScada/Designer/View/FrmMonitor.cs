@@ -62,34 +62,26 @@ namespace Designer.View
 
         private void GMap_RaiseMarkerDoubleClickEvent(object sender, HDSComponent.UI.MarkerEventArgs e)
         {
-           if(GMap.IsAllowMovingMarker == false)
-           {
-               string deviceName = DesignerAccess.GetJunction(e.MarkerName).DeviceName;
-               Device dev = DBAccess.GetDevice(deviceName);
-               if (dev != null)
-               {
-                   if (dev.Driver == Common.DriverType.VDK.ToString())
-                   {
-                       FrmVDKJunction f = new FrmVDKJunction();
-                       f.JunctionName = e.MarkerName;
-                       f.Show(this);
-                   }
-                   else if (dev.Driver == Common.DriverType.OPC.ToString())
-                   {
-                       FrmPLCJunction f = new FrmPLCJunction();
-                       f.JunctionName = e.MarkerName;
-                       f.Show(this);
-                   }
-               }
-           }
-            
-
-            //Thread t = new Thread(new ThreadStart(() =>
-            //    {
-
-            //    }));
-            //t.ApartmentState = ApartmentState.STA;
-            //t.Start();
+            if (GMap.IsAllowMovingMarker == false)
+            {
+                string deviceName = DesignerAccess.GetJunction(e.MarkerName).DeviceName;
+                Device dev = DBAccess.GetDevice(deviceName);
+                if (dev != null)
+                {
+                    if (dev.Driver == Common.DriverType.VDK.ToString())
+                    {
+                        FrmVDKJunction f = new FrmVDKJunction();
+                        f.JunctionName = e.MarkerName;
+                        f.Show(this);
+                    }
+                    else if (dev.Driver == Common.DriverType.OPC.ToString())
+                    {
+                        FrmPLCJunction f = new FrmPLCJunction();
+                        f.JunctionName = e.MarkerName;
+                        f.Show(this);
+                    }
+                }
+            }
         }
 
         private void GMap_RaiseDeleteMarkerEvent(object sender, HDSComponent.UI.MarkerEventArgs e)
@@ -142,15 +134,9 @@ namespace Designer.View
                 HDSComponent.UI.MyMarker marker = GMap.AddMarker(juncs[j].JunctionName, (double)juncs[j].Lat, (double)juncs[j].Lng);
                 marker.DisplayTag.Name = juncs[j].Tag;
                 marker.DisplayTag.Address = Program.GetDisplayTagAddress(marker.DisplayTag.Name);
-                marker.DisplayTag.RaiseTagValueChangedEvent += DisplayTag_RaiseTagValueChangedEvent;
                 disp.AddTag(marker.DisplayTag);
             }
             Program.AddDisplayForm(this, new List<Display>() { disp });
-        }
-
-        private void DisplayTag_RaiseTagValueChangedEvent(object sender, EventArgs e)
-        {
-            
         }
 
         private void FrmMonitor_FormClosed(object sender, FormClosedEventArgs e)

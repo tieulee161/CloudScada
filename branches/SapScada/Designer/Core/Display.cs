@@ -20,7 +20,7 @@ namespace Designer.Core
         public bool IsRunning { get; set; }
 
         private BackgroundWorker _BackgroundWorker = null;
-        private System.Timers.Timer _Timer;
+        private System.Timers.Timer _Timer { get; set; }
 
         public Display(int period)
         {
@@ -29,12 +29,17 @@ namespace Designer.Core
             IsRunning = false;
             DisplayTags = new Dictionary<string, List<IDisplayTag>>();
             _BackgroundWorker = new BackgroundWorker();
+            _BackgroundWorker.WorkerSupportsCancellation = true;
             _BackgroundWorker.DoWork += _BackgroundWorker_DoWork;
 
             _Timer = new System.Timers.Timer();
             _Timer.Interval = period;
             _Timer.Elapsed += _Timer_Elapsed;
         }
+
+     
+
+       
 
         public void AddTag(IDisplayTag tag)
         {
@@ -101,24 +106,24 @@ namespace Designer.Core
                 }
             }
         }
+
+        public void Stop()
+        {
+            IsRunning = false;
+            _Timer.Stop();
+        }
+      
+        private void _BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            UpdateDisplayTag();
+        }
+
         private void _Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             if (!_BackgroundWorker.IsBusy)
             {
                 _BackgroundWorker.RunWorkerAsync();
-                
             }
-        }
-
-        public void Stop()
-        {
-            _Timer.Stop();
-            IsRunning = false;
-        }
-
-        private void _BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            UpdateDisplayTag();
         }
 
         private void UpdateDisplayTag()

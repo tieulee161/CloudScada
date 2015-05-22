@@ -522,7 +522,7 @@ namespace Designer.View
                     node.Image = Properties.Resources.List;
                     treeScenario.Nodes.Add(node);
                 }
-                treeScenario.TreeViewElement.TreeNodeProvider.Reset();
+             //   treeScenario.TreeViewElement.TreeNodeProvider.Reset();
 
                 treeScenario.SelectedNodeChanged += treeScenario_SelectedNodeChanged;
              
@@ -751,9 +751,13 @@ namespace Designer.View
 
         private void FrmVDKScenario_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.RemoveDisplayForm(this);
+          
         }
 
+        public void StopUpdating()
+        {
+            Program.RemoveDisplayForm(this);
+        }
 
     }
 }

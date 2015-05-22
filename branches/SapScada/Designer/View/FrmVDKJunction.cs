@@ -20,14 +20,13 @@ namespace Designer.View
         FrmVDKLight _FrmVDKLight;
         FrmVDKPowerCard _FrmVDKPowerCard;
         FrmVDKDetail _FrmVDKDetail;
-        List<Form> _DisplayForm;
 
         public FrmVDKJunction()
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
             this.Size = new Size(640, 482);
-            _DisplayForm = new List<Form>();
+            this.FormClosed += FrmVDKJunction_FormClosed;
         }
 
         private void FrmVDKJunction_Load(object sender, EventArgs e)
@@ -65,14 +64,6 @@ namespace Designer.View
             _FrmVDKScenario.JunctionName = this.JunctionName;
             _FrmVDKDetail.JunctionName = this.JunctionName;
 
-            _DisplayForm.Add(_FrmVDKInfo);
-            _DisplayForm.Add(_FrmVDKTime);
-            _DisplayForm.Add(_FrmVDKPeripheral);
-            _DisplayForm.Add(_FrmVDKScenario);
-            _DisplayForm.Add(_FrmVDKLight);
-            _DisplayForm.Add(_FrmVDKPowerCard);
-            _DisplayForm.Add(_FrmVDKDetail);
-
             InitMdiChildren(_FrmVDKInfo);
             InitMdiChildren(_FrmVDKTime);
             InitMdiChildren(_FrmVDKPeripheral);
@@ -103,16 +94,17 @@ namespace Designer.View
         {
             f.Tag = this;
             f.MdiParent = this;
-           
         }
 
-        private void FrmVDKJunction_FormClosing(object sender, FormClosingEventArgs e)
+        void FrmVDKJunction_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Hide();
-            for (int j = _DisplayForm.Count - 1; j >= 0; j--)
-            {
-                _DisplayForm[j].Close();
-            }
+            _FrmVDKInfo.StopUpdating();
+            _FrmVDKTime.StopUpdating();
+            _FrmVDKPeripheral.StopUpdating();
+            _FrmVDKScenario.StopUpdating();
+            _FrmVDKLight.StopUpdating();
+            _FrmVDKPowerCard.StopUpdating();
+            _FrmVDKDetail.StopUpdating();
         }
 
     }

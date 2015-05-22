@@ -299,6 +299,11 @@ namespace Designer.View
 
         private void FrmPLCNormalDaySetting_FormClosing(object sender, FormClosingEventArgs e)
         {
+            
+        }
+
+        public void StopUpdating()
+        {
             Program.RemoveDisplayForm(this);
         }
 

@@ -284,8 +284,12 @@ namespace Designer.View
 
         private void FrmPLCAlarmSetting_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.RemoveDisplayForm(this);
+           
         }
 
+        public void StopUpdating()
+        {
+            Program.RemoveDisplayForm(this);
+        }
     }
 }

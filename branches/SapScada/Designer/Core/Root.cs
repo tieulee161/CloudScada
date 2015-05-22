@@ -14,8 +14,8 @@ namespace Designer.Core
 {
     public class Root
     {
-        Dictionary<string, Task> Tasks;
-        Dictionary<int, Display> Displays;
+        Dictionary<string, Task> Tasks { get; set; }
+        Dictionary<int, Display> Displays { get; set; }
         public Dictionary<string, Alarm> Alarms { get; set; }
         Dictionary<IOTag, List<IDisplayTag>> Mapping;
         Dictionary<DriverType, Driver> IDriver;

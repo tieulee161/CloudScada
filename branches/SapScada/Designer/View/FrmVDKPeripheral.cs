@@ -253,10 +253,13 @@ namespace Designer.View
 
         private void FrmVDKPeripheral_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.RemoveDisplayForm(this);
+         
         }
 
-
+        public void StopUpdating()
+        {
+            Program.RemoveDisplayForm(this);
+        }
 
 
     }

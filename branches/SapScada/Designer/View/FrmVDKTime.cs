@@ -178,6 +178,10 @@ namespace Designer.View
         private void FrmVDKTime_FormClosing(object sender, FormClosingEventArgs e)
         {
             timer1.Enabled = false;
+        }
+
+        public void StopUpdating()
+        {
             Program.RemoveDisplayForm(this);
         }
     }

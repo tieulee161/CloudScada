@@ -15,33 +15,41 @@ namespace Designer.Core
             {
                 if ((oldValue != null) && (newValue != null))
                 {
+                    List<Junction> juncs = DesignerAccess.GetJunctions(tag.Device.Name);
+                    string junctions = "";
+                    string device = "";
+                    string port = "";
+                    string date = "";
+                    string time = "";
+
+                    List<string> temp = new List<string>();
+                    foreach (Junction junc in juncs)
+                    {
+                        temp.Add(junc.JunctionName);
+                    }
+                    junctions = string.Join(",", temp);
+
+                    device = tag.Device.Name;
+                    port = tag.Device.Port.ToString();
+                    date = DateTime.Now.ToString("dd/MM/yyyy");
+                    time = DateTime.Now.ToString("HH:mm");
+
                     if (((int)oldValue != 0) && ((int)newValue == 0))
                     {
-                        List<Junction> juncs = DesignerAccess.GetJunctions(tag.Device.Name);
-                        string junctions = "";
-                        string device = "";
-                        string port = "";
-                        string date = "";
-                        string time = "";
-
-                        List<string> temp = new List<string>();
-                        foreach (Junction junc in juncs)
-                        {
-                            temp.Add(junc.JunctionName);
-                        }
-                        junctions = string.Join(",", temp);
-
-                        device = tag.Device.Name;
-                        port = tag.Device.Port.ToString();
-                        date = DateTime.Now.ToString("dd/MM/yyyy");
-                        time = DateTime.Now.ToString("HH:mm");
-
                         string title = "TỦ THGT BỊ MẤT KẾT NỐI";
                         string content = string.Format("- Giao lộ: {0}\r\n- Tủ: {1}\r\n- Port: {2}\r\n- Ngày: {3}\r\n- Thời gian: {4}", junctions, device, port, date, time);
 
                         Email mail = new Email(title, content);
                     }
+                    else if (((int)oldValue == 0) && ((int)newValue != 0))
+                    {
+                        string title = "TỦ THGT ĐÃ KẾT NỐI";
+                        string content = string.Format("- Giao lộ: {0}\r\n- Tủ: {1}\r\n- Port: {2}\r\n- Ngày: {3}\r\n- Thời gian: {4}", junctions, device, port, date, time);
+
+                        Email mail = new Email(title, content);
+                    }
                 }
+               
             }
             else if (tag.Name.Contains("LightError.") && tag.Name.EndsWith(".0"))
             {
@@ -71,7 +79,7 @@ namespace Designer.Core
                         info = string.Format("{0} \\ JunctionName.LightError.CardId.LightId.ErrorId - Lỗi 0 là lỗi mất đèn", tag.Name);
 
                         string title = "LỖI MẤT ĐÈN";
-                        string content = string.Format("- Giao lộ: {0}\r\n- Tủ: {1}\r\n- Port: {2}\r\n- Ngày: {3}\r\n- Thời gian: {4}\r\n- Info", junctions, device, port, date, time);
+                        string content = string.Format("- Giao lộ: {0}\r\n- Tủ: {1}\r\n- Port: {2}\r\n- Ngày: {3}\r\n- Thời gian: {4}\r\n- Info: {5}", junctions, device, port, date, time, info);
 
                         Email mail = new Email(title, content);
                     }

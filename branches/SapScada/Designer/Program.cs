@@ -7,6 +7,7 @@ using Designer.View;
 using Designer.Core;
 using Designer.Model;
 using Common;
+using System.ComponentModel;
 
 namespace Designer
 {
@@ -27,10 +28,12 @@ namespace Designer
         // public static string version = "2.0.13"; // updated 21/1/2015 - update trend and update time every 4 hours
         //      public static string version = "2.1.0"; // updated 3/2/2015 - Update reset error layout for PLC Junction
         //     public static string version = "2.1.1"; // updated 8/4/2015 - 1 device can control 1 or more junctions.
-      //  public static string version = "2.1.2"; // updated 5/5/2015 - when moving marker is allowed, can not open junction form (VDKJuntion or OPCJunction), fix update TOD
-      //  public static string version = "2.1.3"; // updated 8/5/2015 - when losting connection and lost light, system send notifcatetion to supervisor via email : add email.cs and INotify interface and EmailNotify class
-        public static string version = "2.1.4"; // updated 8/5/2015 - update FrmVDKScenario : when currentTODId changed, unhighlight this row and highlight another row
-       
+        //  public static string version = "2.1.2"; // updated 5/5/2015 - when moving marker is allowed, can not open junction form (VDKJuntion or OPCJunction), fix update TOD
+        //  public static string version = "2.1.3"; // updated 8/5/2015 - when losting connection and lost light, system send notifcatetion to supervisor via email : add email.cs and INotify interface and EmailNotify class
+        //public static string version = "2.1.4"; // updated 8/5/2015 - update FrmVDKScenario : when currentTODId changed, unhighlight this row and highlight another row
+     //   public static string version = "2.1.5"; // updated 19/5/2015 - update enhance perfomance of FrmVDKJunction and VDKPLCJunction, not come into 'not responding' state
+        public static string version = "2.1.6"; // updated 21/5/2015 - update: send an email when the connection between server and controller is established
+      
         #endregion
 
         public static bool IsRunning = false;
@@ -127,6 +130,26 @@ namespace Designer
 
         public static void RemoveDisplayForm(Form f)
         {
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += worker_DoWork;
+            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            worker.RunWorkerAsync(f);
+
+        }
+
+        private static void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            // release resource
+            Form f = (Form)e.Result;
+            f.Close();
+            f.Dispose();
+            GC.Collect();
+        }
+
+        private static void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Form f = (Form)e.Argument;
+            e.Result = f;
             if (DisplayForms.ContainsKey(f))
             {
                 List<Display> disp = DisplayForms[f];

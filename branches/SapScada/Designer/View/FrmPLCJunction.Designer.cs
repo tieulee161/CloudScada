@@ -83,7 +83,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PLC Junction";
             this.ThemeName = "TelerikMetroBlue";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPLCJunction_FormClosing);
             this.Load += new System.EventHandler(this.FrmPLCJunction_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);
